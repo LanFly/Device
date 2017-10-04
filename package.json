@@ -1,0 +1,28 @@
+{
+  "name": "device",
+  "version": "0.9.0",
+  "description": "drive hardware by nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "driver",
+    "hardware",
+    "i2c",
+    "serial",
+    "uart",
+    "spi",
+    "xfs5152ce"
+  ],
+  "author": "LanFly",
+  "license": "ISC",
+  "dependencies": {
+    "floyd-steinberg": "^1.0.5",
+    "i2c": "^0.2.3",
+    "node-dht-sensor": "0.0.32",
+    "oled-ssd1306-i2c": "^1.0.6",
+    "png-to-lcd": "^1.0.3",
+    "serialport": "^5.0.0"
+  }
+}
