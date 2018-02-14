@@ -1,4 +1,6 @@
-# Device.js
+# oneDevice.js
+
+心塞塞的，device被占用了，只能叫onedevice了。这感觉。。。。。。🙄
 
 --------------
 
@@ -49,13 +51,13 @@ test文件夹下面有测试例子，这些都在我的`Linux raspberrypi 4.4.34
 1. 引入所有模块
 
  ```js
- var Device = require('device');
+ var Device = require('onedevice');
  ```
 
 2. 引入某一个模块
 
  ```js
- var XFS5152CE = require('device/lib/device/xfs5152ce');
+ var XFS5152CE = require('onedevice/lib/device/xfs5152ce');
  ```
 
 #### 用法：
@@ -121,7 +123,7 @@ xfs5152ce这款文字转语言芯片可以使用I2C、SPI、串口等方式通�
 这里使用串口通信驱动模块，波特率一般为9600，波特率根据自己的情况设置。
 
 ```js
-var Device = require('device');
+var Device = require('onedevice');
 
 var xfs5152ce = new Device({
     description: 'xfs5152ce module',

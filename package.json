@@ -1,5 +1,5 @@
 {
-    "name": "device",
+    "name": "onedevice",
     "version": "0.0.1",
     "main": "index.js",
     "description": "drive hardware by nodejs",
