@@ -1,12 +1,16 @@
 # oneDevice.js
 
+用NodeJS驱动硬件。
+
 心塞塞的，device被占用了，只能叫onedevice了。这感觉。。。。。。🙄
 
 --------------
 
 ![](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)
 
-用NodeJS驱动硬件。
+<h2 style="color: #2493fb;">这是什么？</h2>
+
+这是一个旨在用NodeJS驱动硬件的驱动包。开箱即用、完善的文档、持续更新、友好的API。用树莓派打造自己的智能家居。
 
 ## 必看
 
