@@ -4,6 +4,8 @@
  * 
  * author: LanFly
  * email: bluescode@outlook.com
+ * 
+ * description: 使用canvas绘制屏幕，需要先安装node canvas
  */
 
 var Canvas = require('canvas');
@@ -20,7 +22,9 @@ var ssd1306 = new SSD1306({
 var canvas = new Canvas(128, 64);
 var ctx = canvas.getContext('2d');
 
+ctx.font = '20px Impact';
 ctx.fillStyle = '#FFF';
-ctx.fillText("Hello world", 0, 0);
+ctx.fillText("hello Canvas", 0, 20);
+ctx.fillText("你好", 0, 50);
 
 ssd1306.drawCanvas(canvas);

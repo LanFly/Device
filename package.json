@@ -1,6 +1,6 @@
 {
     "name": "onedevice",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "index.js",
     "description": "drive hardware by nodejs",
     "author": {
@@ -31,9 +31,11 @@
     ],
     "license": "GPL-3.0",
     "dependencies": {
+        "canvas": "^1.6.10",
         "floyd-steinberg": "^1.0.5",
         "i2c": "^0.2.3",
         "node-dht-sensor": "0.0.32",
+        "oled-font-5x7": "^1.0.1",
         "oled-ssd1306-i2c": "^1.0.6",
         "png-to-lcd": "^1.0.3",
         "serialport": "^5.0.0"

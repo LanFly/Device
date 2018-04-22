@@ -4,6 +4,8 @@
  * 
  * author: LanFly
  * email: bluescode@outlook.com
+ * 
+ * description: xfs5152基本用法
  */
 
 var path = require('path');
