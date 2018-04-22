@@ -6,13 +6,39 @@
 
 --------------
 
-![](https://img.shields.io/badge/version-0.0.1-brightgreen.svg)
+![](https://img.shields.io/badge/version-0.0.2-brightgreen.svg) ![](https://img.shields.io/badge/test-passing-brightgreen.svg)
 
 <h2 style="color: #2493fb;">这是什么？</h2>
 
 这是一个旨在用NodeJS驱动硬件的驱动包。开箱即用、完善的文档、持续更新、友好的API。用树莓派打造自己的智能家居。
 
-## 必看
+<h4 style="color: #2493fb;">最近更新</h4>
+
+> <span style="color: red;">v0.0.2</span> @ 2018-04-22 17:19
+
+ - SSD1306新增showSystemInfo函数，用于监控系统信息。
+ - 直接调用showSystemInfo即可在屏幕上面显示内存、CPU统计信息、IP、时间。
+ - stopSystemInfo函数用于停止刷新系统监控信息。
+ - 增加GPIO引脚参考图，用于查阅树莓派引脚编号和功能。
+
+
+<h4 style="color: #2493fb;">报告bug</h4>
+
+ - QQ交流群: 230948257
+ - email: [bluescode@outlook.com](mailto:bluescode@outlook.com)
+ - issue: [https://github.com/LanFly/Device/issues](https://github.com/LanFly/Device/issues)
+
+
+<h4 style="color: #2493fb;">后续主要更新</h4>
+
+ - 增加更多型号硬件驱动
+ - 更抽象的API，一句话完成条件监控、动作触发
+ - 更容易阅读的文档
+
+
+test文件夹下面有测试例子，这些都在我的`Linux raspberrypi 4.4.34-v7+ Raspbian GNU/Linux 8.0 (jessie)`下面测试通过。
+
+<h2 style="color: #2493fb;">必看</h2>
 
 ```text
 0. 树莓派需要先安装BCM2835
@@ -24,29 +50,6 @@
 6. 我会持续集成其它种类的驱动，如有硬件没驱动的同学，可以反馈给我
 7. i2c包的作者已经N年不更新了，里面有个bug，pull request也不处理。使用ssd1306的时候可能会有点问题，自己改一行代码就行了。
 ```
-
-> 报告bug:
-
- - QQ交流群: 230948257
- - email: [bluescode@outlook.com](mailto:bluescode@outlook.com)
- - issue: [https://github.com/LanFly/Device/issues](https://github.com/LanFly/Device/issues)
-
-> 后续主要更新:
-
- - 增加更多型号硬件驱动
- - 更容易阅读的文档
-
-> 更新记录:
-
- v0.0.1:
-
-  - 增加讯飞XFS5152CE文字转语音芯片的驱动
-  - 增加SSD1306 OLED屏幕的驱动。
-  - 支持在SSD1306屏幕上直接绘制canvas，更友好的图形API(我正在尽量提高刷新率)
-  - 包含UART串口、I2C、UDP驱动
-  - 包含DHT-11、DHT-22温度湿度传感器驱动
-
-test文件夹下面有测试例子，这些都在我的`Linux raspberrypi 4.4.34-v7+ Raspbian GNU/Linux 8.0 (jessie)`下面测试通过。
 
 ## 开始
 
@@ -381,6 +384,20 @@ ssd1306.oled.drawLine(1, 1, 128, 64, 1);
 
 在屏幕上绘制PNG图片。为达到最理想的显示效果，PNG图片最好是单色的，背景透明。通过`pngparse`npm包处理图片的像素信息。抖动算法使用的是`floyd-steinberg`npm包。
 
+
+
+##### function: showSystemInfo(second)
+
+@params {Number} second: 刷新屏幕的间隔时间，单位秒。如果不传，或传0，则只显示一次。否则会自动每隔几秒刷新一次。
+
+显示系统信息，在屏幕上显示CPU、内存的统计信息，以及IP地址、时间。如果指定了一个时间，则会自动每隔几秒刷新。
+
+
+##### function: stopSystemInfo()
+
+停止刷新系统信息
+
+
 -----------------------------------------
 ## 通用性设备API
 -----------------------------------------
@@ -517,3 +534,23 @@ UDP驱动实例有以下方法:
 总之，这只是开始。
 
 大家用的开心就好，反正也是给我自己用的。
+
+
+----------------------------------------------------
+
+<h2 style="color: #2493fb;">change log</h2>
+
+> v0.0.2 @ 2018-04-22 17:19
+
+ - SSD1306新增showSystemInfo函数，用于监控系统信息。
+ - 直接调用showSystemInfo即可在屏幕上面显示内存、CPU统计信息、IP、时间。
+ - stopSystemInfo函数用于停止刷新系统监控信息。
+ - 增加GPIO引脚参考图，用于查阅树莓派引脚编号和功能。
+
+> v0.0.1 @ 2018-01-01 23:27
+
+ - 增加讯飞XFS5152CE文字转语音芯片的驱动
+ - 增加SSD1306 OLED屏幕的驱动。
+ - 支持在SSD1306屏幕上直接绘制canvas，更友好的图形API(我正在尽量提高刷新率)
+ - 包含UART串口、I2C、UDP驱动
+ - 包含DHT-11、DHT-22温度湿度传感器驱动

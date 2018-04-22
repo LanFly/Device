@@ -4,6 +4,8 @@
  * 
  * author: LanFly
  * email: bluescode@outlook.com
+ * 
+ * description: 使用PNG图片绘制屏幕
  */
 
 var path = require('path');
