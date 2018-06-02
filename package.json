@@ -1,6 +1,6 @@
 {
     "name": "onedevice",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "index.js",
     "description": "drive hardware by nodejs",
     "author": {
@@ -38,6 +38,7 @@
         "oled-font-5x7": "^1.0.1",
         "oled-ssd1306-i2c": "^1.0.6",
         "png-to-lcd": "^1.0.3",
+        "rx-lite": "^4.0.8",
         "serialport": "^5.0.0"
     }
 }

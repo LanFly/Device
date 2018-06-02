@@ -6,7 +6,7 @@
 
 --------------
 
-![](https://img.shields.io/badge/version-0.0.2-brightgreen.svg) ![](https://img.shields.io/badge/test-passing-brightgreen.svg)
+![](https://img.shields.io/badge/version-0.0.3-brightgreen.svg) ![](https://img.shields.io/badge/test-passing-brightgreen.svg)
 
 <h2 style="color: #2493fb;">这是什么？</h2>
 
@@ -14,12 +14,9 @@
 
 <h4 style="color: #2493fb;">最近更新</h4>
 
-> <span style="color: red;">v0.0.2</span> @ 2018-04-22 17:19
+> <span style="color: red;">v0.0.3</span> @ 2018-06-02 22:56
 
- - SSD1306新增showSystemInfo函数，用于监控系统信息。
- - 直接调用showSystemInfo即可在屏幕上面显示内存、CPU统计信息、IP、时间。
- - stopSystemInfo函数用于停止刷新系统监控信息。
- - 增加GPIO引脚参考图，用于查阅树莓派引脚编号和功能。
+ - 使用RxJS，更抽象更简单易用的API
 
 
 <h4 style="color: #2493fb;">报告bug</h4>
@@ -276,12 +273,57 @@ dht11.fetch(function(error, temperature, humidity){
     if (error) {
         console.log(error.message);
     }else{
-        console.log('温度: ' + temperature.toFixed(2) + ' 湿度: ' + humidity.toFixed(2));
+        console.log('温度: ' + temperature + ' 湿度: ' + humidity);
     }
 });
 ```
 
 读取传感器数据比较简单。注意：DHT11采样周期是1s，建议连续读取数值至少间隔1s以上，否则可能会引起错误。DHT22采样周期2s，建议连续读取数值至少间隔2s以上。
+
+dht系列传感器现在增加RxJS。使用`observe`可返回`观察者`对象。
+
+```js
+// 观察dht11传感器的数值，间隔2秒观察一次
+var observable = dht11.observe(2000);
+```
+
+`observable`是可订阅的，使用`then`订阅，订阅后返回`subscription`，表示进行中的执行。
+
+```js
+var subscription = observable.then(function(value){
+    // 读取传感器数值成功的订阅函数
+    console.log(value);
+    // 每隔2秒这个订阅函数会执行一次，因为在observe中我们指定了2秒
+    // subscription可以使用dispose停止订阅，停止订阅后，这个订阅函数将不会再执行
+    subscription.dispose();
+}, function(error){
+    // 读取传感器数值失败的订阅函数
+    console.log(error);
+    // 读取失败后会自动停止订阅
+});
+```
+
+使用RxJS，我们可以轻松的组合各种条件`操作符`，这可以让我们的逻辑更直观。
+
+```js
+// observe可以指定观察数据类型，t 表示温度，h 表示湿度，如果不传，则温度和湿度都观察
+
+var subscription = dht11.observe(2000, 't').max(28).then(function(value){
+    console.log('好热啊！当前温度是: ', value);
+});
+
+var subscription1 = dht11.observe(2000, 'h').min(20).then(function(value){
+    console.log('好干燥啊！当前湿度是: ', value);
+});
+```
+
+max、min 就是`操作符`。操作符可链式组合，并且有先后顺序，他们就像一节一节管道一样被依次连接。
+
+max 表示大于(value > max)，上面的结果就是当温度大于28的时候，将会执行订阅函数。
+
+min 表示小于(value < min)，结果是当湿度小于20的时候，将会执行订阅函数。
+
+除此之外，还有其它的操作符。如 `等于 when(condi)`、`区间 between(left, right)`。此外，observable还包含RxJS的所有可用操作符。
 
 ----------------------------------------
 
@@ -539,6 +581,10 @@ UDP驱动实例有以下方法:
 ----------------------------------------------------
 
 <h2 style="color: #2493fb;">change log</h2>
+
+> v0.0.3 @ 2018-06-02 22:56
+
+ - 使用RxJS，更抽象更简单易用的API
 
 > v0.0.2 @ 2018-04-22 17:19
 
